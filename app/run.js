@@ -2,13 +2,17 @@
 
 	var config = {
 		// baseUrl: '',
-		//paths: {
-			// Configure paths here
-		//},
+    paths: {
+      'get_siblings': "app/utils/get_siblings",
+      'get_node_config': "app/utils/get_node_config"
+    },
 		packages: [
 			// Define application-level packages
 			{
 				name: 'welcome', location: 'app/welcome'
+			},
+			{
+				name: 'language_selector', location: 'app/language_selector'
 			},
 
 			// Define a theme package, and configure it to always use the css module loader
@@ -26,7 +30,8 @@
 			{ name: 'msgs', location: 'lib/msgs', main: 'msgs' },
 			{ name: 'when', location: 'lib/when', main: 'when' },
 			{ name: 'meld', location: 'lib/meld', main: 'meld' },
-			{ name: 'poly', location: 'lib/poly' }
+			{ name: 'poly', location: 'lib/poly' },
+			{ name: "lodash", location: "lib/lodash/dist", main: "lodash"}
 		],
 		// Turn off i18n locale sniffing. Change or remove this line if you want
 		// to test specific locales or try automatic locale-sniffing.

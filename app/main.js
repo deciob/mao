@@ -4,20 +4,57 @@ define({
 	// configured in run.js, curl knows to load this as CSS.
 	theme: { module: 'theme/basic.css' },
 
-	// Create a simple view by rendering html, replacing some i18n strings
-	// and loading CSS.  Then, insert into the DOM
-	message: {
-		render: {
-			template: { module: 'text!welcome/template.html' },
-			replace: { module: 'i18n!welcome/strings' },
-			css: { module: 'css!welcome/structure.css' }
-		},
-		insert: { at: 'dom.first!body' }
+	default_language: "italian",
+
+	language_selector_config: { 
+		module: "app/language_selector/config"
 	},
+  language_selector_get_current_node: {
+    module: 'app/language_selector/get_current_node'
+  },
+  language_selector_get_node_config: {
+    module: 'app/language_selector/get_node_config'
+  },
+
+  language_selector: {
+    render: {
+      template: {
+        module: "text!language_selector/template.html"
+      }
+    },
+    insert: {
+      at: "dom.first!header"
+    }
+  },
+  language_selector_controller: {
+    create: {
+      module: 'app/language_selector/controller'
+    },
+    properties: {
+      default_language: {
+        $ref: "default_language"
+      },
+      getCurrentNode: {
+        $ref: "language_selector_get_current_node"
+      }
+    },
+    ready: {
+      initialize: [{$ref: "language_selector"}],
+      setCurrentLanguage: []
+    }//,
+    //on: {
+    //  language_selector: {
+    //    'click:button': 'language_selector_get_node_config | selectLanguage'
+    //  }
+    //}
+  },
+	
 
 	// Wire.js plugins
 	plugins: [
 		{ module: 'wire/dom', classes: { init: 'loading' } },
-		{ module: 'wire/dom/render' }
+		{ module: 'wire/dom/render' },
+		{ module: 'wire/on' },
+		{ module: 'wire/aop' }
 	]
 });
