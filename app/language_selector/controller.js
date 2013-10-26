@@ -7,17 +7,9 @@
 
     Controller.prototype = {
 
-      initialize: function(language_selector) {
-        this.language_selector = language_selector;
+      initialize: function(selector) {
+        this.selector = selector;
         return this.getCurrentNode().classList.remove(this.inactive_class);
-      },
-
-      updateSelectors: function(node) {
-        var siblings = this.getSiblings(node);
-        _.each(siblings, function(sibling) {
-          return sibling.classList.add(this.inactive_class);
-        }, this);
-        return node.classList.remove(this.inactive_class);
       },
 
       selectLanguage: function(conf) {

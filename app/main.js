@@ -7,9 +7,8 @@ define({
 	default_language: "italian",
   inactive_class: "inactive",
 
-	get_siblings: { 
-    module: "app/utils/get_siblings"
-  },
+	get_siblings: { module: "app/utils/get_siblings"},
+  update_selectors: { module: "app/utils/update_selectors"},
 
   language_selector_config: { 
 		module: "app/language_selector/config"
@@ -34,7 +33,8 @@ define({
       default_language: { $ref: "default_language" },
       inactive_class: { $ref: "inactive_class" },
       getCurrentNode: { $ref: "language_selector_get_current_node" },
-      getSiblings: { $ref: "get_siblings" }
+      getSiblings: { $ref: "get_siblings" },
+      updateSelectors: { $ref: "update_selectors" }
     },
     ready: {
       initialize: [{$ref: "language_selector"}],
