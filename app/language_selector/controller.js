@@ -9,16 +9,13 @@
 
       initialize: function(selector) {
         this.selector = selector;
-        return this.getCurrentNode().classList.remove(this.inactive_class);
+        this.language = this.default_language;
+        return this.getCurrentLanguageNode().classList.remove(this.inactive_class);
       },
 
-      selectLanguage: function(conf) {
-        this.lang = this.setCurrentLanguage(conf.language);
-        return this.updateActiveNodes(conf.node);
-      },
-
-      setCurrentLanguage: function(lang) {
-        return lang || this.defaultLanguage;
+      updateLanguage: function(language) {
+        this.language = language;
+        return language;
       }
 
     };

@@ -4,20 +4,20 @@ define({
   // configured in run.js, curl knows to load this as CSS.
   theme: { module: 'theme/basic.css' },
 
-  default_language: "italian",
+  default_language: "italiano",
   inactive_class: "inactive",
 
   get_siblings: { module: "app/utils/get_siblings"},
-  update_active_nodes: { module: "app/utils/update_active_nodes"},
+  update_nodes_state: { module: "app/utils/update_nodes_state"},
 
   language_selector_config: { 
     module: "app/language_selector/config"
   },
-  language_selector_get_current_node: {
-    module: 'app/language_selector/get_current_node'
+  get_current_language_node: {
+    module: 'app/language_selector/get_current_language_node'
   },
-  language_selector_get_node_config: {
-    module: 'app/language_selector/get_node_config'
+  get_language_from_node: {
+    module: 'app/language_selector/get_language_from_node'
   },
 
   language_selector: {
@@ -32,17 +32,19 @@ define({
     properties: {
       default_language: { $ref: "default_language" },
       inactive_class: { $ref: "inactive_class" },
-      getCurrentNode: { $ref: "language_selector_get_current_node" },
+      getLanguage: { $ref: "get_language_from_node" },
+      getCurrentLanguageNode: { $ref: "get_current_language_node" },
       getSiblings: { $ref: "get_siblings" },
-      updateActiveNodes: { $ref: "update_active_nodes" }
+      updateNodesState: { $ref: "update_nodes_state" }
     },
     ready: {
       initialize: [{$ref: "language_selector"}],
-      setCurrentLanguage: []
     },
     on: {
       language_selector: {
-        'click:button': 'language_selector_get_node_config | selectLanguage'
+        'click:button':
+          'getCurrentLanguageNode | updateNodesState | \
+          get_language_from_node | updateLanguage'
       }
     }
   },
