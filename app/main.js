@@ -7,12 +7,12 @@ define({
 	default_language: "italian",
   inactive_class: "inactive",
 
-	get_siblings: { module: "app/utils/get_siblings"},
+  get_siblings: { module: "app/utils/get_siblings"},
   update_active_nodes: { module: "app/utils/update_active_nodes"},
 
   language_selector_config: { 
-		module: "app/language_selector/config"
-	},
+    module: "app/language_selector/config"
+  },
   language_selector_get_current_node: {
     module: 'app/language_selector/get_current_node'
   },
@@ -46,13 +46,12 @@ define({
       }
     }
   },
-	
 
 	// Wire.js plugins
 	plugins: [
-		{ module: 'wire/dom', classes: { init: 'loading' } },
-		{ module: 'wire/dom/render' },
-		{ module: 'wire/on' },
-		{ module: 'wire/aop' }
-	]
+    { module: 'wire/dom', classes: { init: 'loading' } },
+    { module: 'wire/dom/render' },
+    { module: 'wire/on' },
+    { module: 'wire/aop' }
+  ]
 });
