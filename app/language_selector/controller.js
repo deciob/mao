@@ -14,7 +14,7 @@
 
       selectLanguage: function(conf) {
         this.lang = this.setCurrentLanguage(conf.language);
-        return this.updateSelectors(conf.node);
+        return this.updateActiveNodes(conf.node);
       },
 
       setCurrentLanguage: function(lang) {
@@ -22,12 +22,6 @@
       }
 
     };
-
-    Controller.plugins = [
-      {
-        module: "wire/dom"
-      }
-    ];
 
     return Controller;
 

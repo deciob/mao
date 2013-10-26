@@ -8,7 +8,7 @@ define({
   inactive_class: "inactive",
 
 	get_siblings: { module: "app/utils/get_siblings"},
-  update_selectors: { module: "app/utils/update_selectors"},
+  update_active_nodes: { module: "app/utils/update_active_nodes"},
 
   language_selector_config: { 
 		module: "app/language_selector/config"
@@ -34,7 +34,7 @@ define({
       inactive_class: { $ref: "inactive_class" },
       getCurrentNode: { $ref: "language_selector_get_current_node" },
       getSiblings: { $ref: "get_siblings" },
-      updateSelectors: { $ref: "update_selectors" }
+      updateActiveNodes: { $ref: "update_active_nodes" }
     },
     ready: {
       initialize: [{$ref: "language_selector"}],

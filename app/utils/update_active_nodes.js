@@ -1,6 +1,8 @@
 (function(define) {
   return define(function(require) {
 
+    // Given a node, set an active class on it 
+    // and remove any active classes from its siblings.
     return function (node) {
       var siblings = this.getSiblings(node);
       _.each(siblings, function(sibling) {
