@@ -2,9 +2,7 @@
   return define(function(require) {
 
     return function(e) {
-      if (e) {
-        return e.target;
-      }
+      if (e) { return e.target; }
       return document.querySelectorAll("button."  + this.default_language)[0];
     };
 

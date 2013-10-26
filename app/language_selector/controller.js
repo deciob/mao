@@ -8,19 +8,21 @@
     Controller.prototype = {
 
       initialize: function(language_selector) {
-        return this.getCurrentNode().classList.remove('grey');
+        this.language_selector = language_selector;
+        return this.getCurrentNode().classList.remove(this.inactive_class);
       },
 
-      updateSelectors: function(node, siblings) {
+      updateSelectors: function(node) {
+        var siblings = this.getSiblings(node);
         _.each(siblings, function(sibling) {
-          return sibling.classList.add('grey');
-        });
-        return node.classList.remove('grey');
+          return sibling.classList.add(this.inactive_class);
+        }, this);
+        return node.classList.remove(this.inactive_class);
       },
 
       selectLanguage: function(conf) {
         this.lang = this.setCurrentLanguage(conf.language);
-        return this.updateSelectors(conf.node, conf.siblings);
+        return this.updateSelectors(conf.node);
       },
 
       setCurrentLanguage: function(lang) {

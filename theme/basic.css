@@ -30,3 +30,15 @@ h1 {
     letter-spacing: -.1ex;
 }
 
+button {
+    color: red;
+}
+
+button.inactive {
+    color: grey;
+}
+
+#language_selector {
+    padding: 50px;
+}
+
