@@ -5,6 +5,7 @@ define({
   theme: { module: 'theme/basic.css' },
 
   default_language: "italiano",
+  default_colour: "red",
   inactive_class: "inactive",
 
   get_siblings: { module: "app/utils/get_siblings"},
@@ -22,7 +23,7 @@ define({
 
   language_selector: {
     render: { template: { module: "text!language_selector/template.html" } },
-    insert: { at: "dom.first!header" }
+    insert: { at: "dom.first!header.languages" }
   },
 
   language_selector_controller: {
@@ -45,6 +46,45 @@ define({
         'click:button':
           'getCurrentLanguageNode | updateNodesState | \
           get_language_from_node | updateLanguage'
+      }
+    }
+  },
+
+  colour_selector_config: { 
+    module: "app/colour_selector/config"
+  },
+  get_current_colour_node: {
+    module: 'app/colour_selector/get_current_colour_node'
+  },
+  get_colour_from_node: {
+    module: 'app/colour_selector/get_colour_from_node'
+  },
+
+  colour_selector: {
+    render: { template: { module: "text!colour_selector/template.html" } },
+    insert: { at: "dom.first!header.colours" }
+  },
+
+  colour_selector_controller: {
+    create: {
+      module: 'app/colour_selector/controller'
+    },
+    properties: {
+      default_colour: { $ref: "default_colour" },
+      inactive_class: { $ref: "inactive_class" },
+      getColour: { $ref: "get_colour_from_node" },
+      getCurrentColourNode: { $ref: "get_current_colour_node" },
+      getSiblings: { $ref: "get_siblings" },
+      updateNodesState: { $ref: "update_nodes_state" }
+    },
+    ready: {
+      initialize: [{$ref: "colour_selector"}],
+    },
+    on: {
+      colour_selector: {
+        'click:button':
+          'getCurrentColourNode | updateNodesState | \
+          get_colour_from_node | updateColour'
       }
     }
   },

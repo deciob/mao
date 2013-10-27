@@ -38,7 +38,7 @@ button.inactive {
     color: grey;
 }
 
-#language_selector {
+#language_selector, #colour_selector {
     padding: 50px;
 }
 

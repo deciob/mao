@@ -5,7 +5,7 @@
       if (e) { 
         return e.target;
       }
-      return document.querySelectorAll("button."  + this.default_language)[0];
+      return document.querySelectorAll("button."  + this.default_colour)[0];
     };
 
   });
