@@ -33,14 +33,14 @@
 			{ name: 'msgs', location: 'lib/msgs', main: 'msgs' },
 			{ name: 'when', location: 'lib/when', main: 'when' },
 			{ name: 'meld', location: 'lib/meld', main: 'meld' },
-			{ name: 'poly', location: 'lib/poly' },
+			//{ name: 'poly', location: 'lib/poly' },
 			{ name: "lodash", location: "lib/lodash/dist", main: "lodash"}
 		],
 		// Turn off i18n locale sniffing. Change or remove this line if you want
 		// to test specific locales or try automatic locale-sniffing.
 		locale: false,
 		// Polyfill everything ES5-ish
-		preloads: ['poly/all']
+		//preloads: ['poly/all']
 		// Or, select individual polyfills if you prefer
 		//preloads: ['poly/array', 'poly/function', 'poly/json', 'poly/object', 'poly/string', 'poly/xhr']
 	};
