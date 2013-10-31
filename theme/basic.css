@@ -34,7 +34,7 @@ button {
     color: red;
 }
 
-button.inactive {
+ul.language-list-view li.inactive button{
     color: grey;
 }
 

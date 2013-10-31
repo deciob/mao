@@ -7,22 +7,18 @@ define({
   default_language: "italiano",
   inactive_class: "inactive",
 
-  get_siblings: { module: "app/utils/get_siblings"},
-  update_nodes_state: { module: "app/utils/update_nodes_state"},
-
-  language_selector_config: { 
-    module: "app/language_selector/config"
-  },
-  get_current_language_node: {
-    module: 'app/language_selector/get_current_language_node'
-  },
-  get_language_from_node: {
-    module: 'app/language_selector/get_language_from_node'
-  },
+  languagesCollection: { wire: 'app/collection/spec' },
 
   language_selector: {
     render: { template: { module: "text!language_selector/template.html" } },
-    insert: { at: "dom.first!header" }
+    insert: { at: "dom.first!header" },
+    bind: {
+      to: { $ref: 'languagesCollection' },
+      bindings: {
+        language: '.language',
+        status: { handler: { $ref: 'statusClassHandler' } }
+      }
+    }
   },
 
   language_selector_controller: {
@@ -32,20 +28,29 @@ define({
     properties: {
       default_language: { $ref: "default_language" },
       inactive_class: { $ref: "inactive_class" },
-      getLanguage: { $ref: "get_language_from_node" },
-      getCurrentLanguageNode: { $ref: "get_current_language_node" },
-      getSiblings: { $ref: "get_siblings" },
-      updateNodesState: { $ref: "update_nodes_state" }
     },
     ready: {
-      initialize: [{$ref: "language_selector"}],
+      initialize: [
+        { $ref: "language_selector" }, 
+        { $ref: 'languagesCollection' }
+      ],
     },
     on: {
       language_selector: {
-        'click:button':
-          'getCurrentLanguageNode | updateNodesState | \
-          get_language_from_node | updateLanguage'
+      'click:button': 'languagesCollection.findItem | updateItems'
       }
+    },
+    connect: {
+      'languagesCollection.Onupdate': 'updateLanguage'
+    }
+  },
+
+  // Data binding handler that ensures exactly one of the supplied
+  // classes is set on a node. 
+  statusClassHandler: {
+    create: {
+      module: 'app/utils/classSingleton',
+      args: ['active', 'inactive']
     }
   },
 
@@ -54,6 +59,7 @@ define({
     { module: 'wire/dom', classes: { init: 'loading' } },
     { module: 'wire/dom/render' },
     { module: 'wire/on' },
-    { module: 'wire/aop' }
+    { module: 'wire/aop' },
+    'wire/connect', 'cola'
   ]
 });
