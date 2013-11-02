@@ -13,8 +13,9 @@
         this.languagesCollection = languagesCollection;
         // TODO: is there a better way of selecting and updating 
         // an item in the collection? 
-        var new_state = { language: "italiano",
-          id: 1,
+        var new_state = {
+          id: 1, 
+          language: this.language,
           status: "active"
         }
         languagesCollection.update(new_state);
