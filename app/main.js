@@ -28,11 +28,11 @@ define({
     properties: {
       default_language: { $ref: "default_language" },
       inactive_class: { $ref: "inactive_class" },
+      languagesCollection: { $ref: 'languagesCollection' }
     },
     ready: {
       initialize: [
-        { $ref: "language_selector" }, 
-        { $ref: 'languagesCollection' }
+        { $ref: "language_selector" }
       ],
     },
     on: {
