@@ -40,7 +40,7 @@
 		// to test specific locales or try automatic locale-sniffing.
 		locale: false,
 		// Polyfill everything ES5-ish
-		preloads: ['poly/all']
+		//preloads: ['poly/all']
 		// Or, select individual polyfills if you prefer
 		//preloads: ['poly/array', 'poly/function', 'poly/json', 'poly/object', 'poly/string', 'poly/xhr']
 	};
